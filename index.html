@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature-Rich Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #0073e6;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        nav ul {
+            background: #333;
+            color: white;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background: #0073e6;
+        }
+
+        section {
+            padding: 2rem;
+            text-align: center;
+            background: white;
+            margin: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 1rem;
+        }
+
+        .carousel img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        form input, form textarea, form button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .fancy-button {
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .fancy-button:hover {
+            background-color: #005bb5;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-color: lightblue;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate {
+            animation: fadeIn 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Feature-Rich Website</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="about" class="animate">
+            <h2>About Me</h2>
+            <p>This is a dynamic website with multiple testable features!</p>
+        </section>
+
+        <section id="services">
+            <h2>Services</h2>
+            <p>We offer web development and testing solutions.</p>
+
+            <div class="carousel">
+                <img src="https://via.placeholder.com/600x300" alt="Image 1">
+                <img src="https://via.placeholder.com/600x300" alt="Image 2">
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form action="#" method="POST">
+                <input type="text" id="name" name="name" placeholder="Your Name" required><br>
+                <input type="email" id="email" name="email" placeholder="Your Email" required><br>
+                <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea><br>
+                <button type="submit" class="fancy-button">Submit</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Interactive Button</h2>
+            <button onclick="alert('Hello, World!')" class="fancy-button">Click Me</button>
+        </section>
+
+        <section>
+            <h2>Video</h2>
+            <video controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Feature-Rich Website</p>
+    </footer>
+</body>
+</html>
