@@ -24,12 +24,14 @@ const MapBox: React.FC<MapBoxProps> = ({ latitude, longitude }) => {
       : DEFAULT_POSITION;
 
   return (
-    <div className="flex-1 bg-gray-200 p-4 border-r border-gray-300 flex flex-col">
-      <h2 className="text-xl font-semibold mb-2">Interactive Map</h2>
+    <div className="flex-1 bg-white bg-opacity-80 p-3 border-r border-gray-300 flex flex-col rounded-xl shadow-md m-1">
+      <h2 className="text-lg font-bold mb-2 text-blue-600 flex items-center gap-2">
+        <span role="img" aria-label="map">🗺️</span> City Adventure Map
+      </h2>
       <MapContainer
         center={center}
         zoom={13}
-        style={{ height: '100%', minHeight: 400, width: '100%' }}
+        style={{ height: '260px', width: '100%', borderRadius: '0.75rem' }}
         scrollWheelZoom={true}
       >
         <TileLayer

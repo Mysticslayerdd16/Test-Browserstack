@@ -12,8 +12,6 @@ type ChatBoxProps = {
 };
 
 const extractCityFromText = (text: string): string | null => {
-  // Try to extract a city name from the user's message
-  // For now, just return the whole text trimmed (or use a better NLP if you want)
   return text.trim();
 };
 
@@ -43,7 +41,6 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onCityChange }) => {
     setMessages((msgs) => [...msgs, { role: 'user', content: input }]);
     setLoading(true);
 
-    // City extraction logic
     const city = extractCityFromText(input);
     if (city && onCityChange) {
       onCityChange(city);
@@ -98,42 +95,44 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onCityChange }) => {
 
   return (
     <div
+      className="flex-1 bg-white bg-opacity-80 p-3 flex flex-col rounded-xl shadow-md m-1"
       style={{
-        maxWidth: 480,
-        margin: '40px auto',
-        padding: 16,
-        border: '1px solid #ddd',
-        borderRadius: 8,
-        background: '#fff',
+        minWidth: 0,
+        minHeight: 0,
         display: 'flex',
         flexDirection: 'column',
-        minHeight: 500,
-        boxShadow: '0 2px 8px #0001',
+        fontSize: '0.95rem',
       }}
     >
+      <h2 className="text-lg font-bold mb-2 text-yellow-600 flex items-center gap-2">
+        <span role="img" aria-label="chat">💬</span> City Chat Corner
+      </h2>
       <div
         ref={chatRef}
         style={{
           flex: 1,
           overflowY: 'auto',
-          marginBottom: 16,
-          padding: 8,
+          marginBottom: 8,
+          padding: 6,
           background: '#f9f9f9',
-          borderRadius: 4,
+          borderRadius: 8,
           border: '1px solid #eee',
-          minHeight: 300,
-          maxHeight: 350,
+          minHeight: 120,
+          maxHeight: 180,
           wordBreak: 'break-word',
+          fontSize: '0.95rem',
         }}
       >
         {messages.map((msg, i) => (
           <div
             key={i}
             style={{
-              margin: '8px 0',
+              margin: '6px 0',
               color: msg.role === 'assistant' ? '#0077cc' : '#222',
               textAlign: msg.role === 'assistant' ? 'left' : 'right',
               whiteSpace: 'pre-wrap',
+              overflowWrap: 'break-word',
+              wordBreak: 'break-word',
             }}
           >
             <b>{msg.role === 'assistant' ? 'Assistant' : 'You'}:</b> {msg.content}
@@ -145,7 +144,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onCityChange }) => {
         onSubmit={handleSubmit}
         style={{
           display: 'flex',
-          gap: 8,
+          gap: 6,
           alignItems: 'center',
         }}
       >
@@ -155,25 +154,28 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onCityChange }) => {
           disabled={loading}
           style={{
             flex: 1,
-            padding: 10,
-            borderRadius: 4,
+            padding: 8,
+            borderRadius: 8,
             border: '1px solid #ccc',
-            fontSize: 16,
+            fontSize: '0.95rem',
             outline: 'none',
+            background: '#fffbe6',
           }}
-          placeholder="Type your message..."
+          placeholder="Type a city or chat with the assistant..."
         />
         <button
           type="submit"
           disabled={loading || !input.trim()}
           style={{
-            padding: '10px 16px',
-            borderRadius: 4,
+            padding: '8px 12px',
+            borderRadius: 8,
             border: 'none',
-            background: '#0077cc',
+            background: '#fbbf24',
             color: '#fff',
             fontWeight: 600,
             cursor: loading ? 'not-allowed' : 'pointer',
+            transition: 'background 0.2s',
+            fontSize: '0.95rem',
           }}
         >
           Send
@@ -183,13 +185,15 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onCityChange }) => {
           onClick={handleNewChat}
           disabled={loading}
           style={{
-            padding: '10px 16px',
-            borderRadius: 4,
+            padding: '8px 12px',
+            borderRadius: 8,
             border: 'none',
-            background: '#eee',
+            background: '#f3f4f6',
             color: '#333',
             fontWeight: 600,
             cursor: loading ? 'not-allowed' : 'pointer',
+            transition: 'background 0.2s',
+            fontSize: '0.95rem',
           }}
         >
           New Chat

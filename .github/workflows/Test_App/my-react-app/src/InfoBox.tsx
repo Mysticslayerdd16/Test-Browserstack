@@ -36,32 +36,42 @@ function InfoBox({ city }: InfoBoxProps) {
 
   if (!city) {
     return (
-      <div className="flex-1 bg-gray-100 p-4 border-r border-gray-300 flex flex-col">
-        <h2 className="text-xl font-semibold mb-2">Info Box</h2>
-        <div>Enter a city to see info.</div>
+      <div className="flex-1 bg-white bg-opacity-80 p-3 border-r border-gray-300 flex flex-col rounded-xl shadow-md m-1">
+        <h2 className="text-lg font-bold mb-2 text-pink-600 flex items-center gap-2">
+          <span role="img" aria-label="info">
+            ℹ️
+          </span>{' '}
+          City Weather
+        </h2>
+        <div style={{ fontSize: '0.95rem' }}>Enter a city to see weather info!</div>
       </div>
     );
   }
 
   return (
-    <div className="flex-1 bg-gray-100 p-4 border-r border-gray-300 flex flex-col">
-      <h2 className="text-xl font-semibold mb-2">Info Box</h2>
-      <ul>
+    <div className="flex-1 bg-white bg-opacity-80 p-3 border-r border-gray-300 flex flex-col rounded-xl shadow-md m-1">
+      <h2 className="text-lg font-bold mb-2 text-pink-600 flex items-center gap-2">
+        <span role="img" aria-label="info">
+          ℹ️
+        </span>{' '}
+        City Weather
+      </h2>
+      <ul className="space-y-1 text-base">
         <li>
-          <b>City:</b> {city.name}
+          <b>📍 City:</b> {city.name}
         </li>
         {loading ? (
           <li>Loading weather...</li>
         ) : weather ? (
           <>
             <li>
-              <b>Temperature:</b> {weather.temperature}°C
+              <b>🌡️ Temperature:</b> {weather.temperature}°C
             </li>
             <li>
-              <b>Forecast:</b> {weather.description}
+              <b>🌬️ Forecast:</b> {weather.description}
             </li>
             <li>
-              <b>Wind Speed:</b> {weather.windspeed} km/h
+              <b>💨 Wind Speed:</b> {weather.windspeed} km/h
             </li>
           </>
         ) : (
