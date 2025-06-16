@@ -45,11 +45,13 @@ const ChatBox: React.FC = () => {
     setMessages((msgs) => [...msgs, { role: 'assistant', content: '' }]);
 
     try {
+      console.log('Sending request to /api/chat with body:', body); // Add this line
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
+      console.log('Response status:', response.status); // Add this line
 
       if (!response.body) throw new Error('No response body');
 
