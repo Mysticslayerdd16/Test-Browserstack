@@ -93,6 +93,8 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onCityChange }) => {
     }
   };
 
+  console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
+
   return (
     <div
       className="flex-1 bg-white bg-opacity-80 p-3 flex flex-col rounded-xl shadow-md m-1"
