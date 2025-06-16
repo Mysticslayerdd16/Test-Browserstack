@@ -3,6 +3,8 @@ import ChatBox from './ChatBox';
 import InfoBox from './InfoBox';
 import MapBox from './MapBox';
 import { getCityCoordinates } from './utils';
+import CityImagesBox from './CityImagesBox';
+
 
 const INITIAL_CITY = {
   name: 'Gurugram',
@@ -30,15 +32,21 @@ function App() {
         City Explorer Playground
         <span role="img" aria-label="party">🎉</span>
       </header>
-      <main className="flex-1 flex flex-row w-full gap-2 p-2" style={{ fontSize: '0.95rem' }}>
-        <div className="flex-1 flex flex-col">
-          <InfoBox city={city} />
+      <main className="flex-1 flex flex-col w-full gap-2 p-2" style={{ fontSize: '0.95rem' }}>
+        <div className="flex flex-row w-full gap-2">
+          <div className="flex-1 flex flex-col">
+            <InfoBox city={city} />
+          </div>
+          <div className="flex-1 flex flex-col">
+            <MapBox latitude={city.lat} longitude={city.lon} />
+          </div>
+          <div className="flex-1 flex flex-col">
+            <ChatBox onCityChange={handleCityChange} />
+          </div>
         </div>
-        <div className="flex-1 flex flex-col">
-          <MapBox latitude={city.lat} longitude={city.lon} />
-        </div>
-        <div className="flex-1 flex flex-col">
-          <ChatBox onCityChange={handleCityChange} />
+        {/* --- City images section --- */}
+        <div className="w-full mt-4 flex flex-col items-center">
+          <CityImagesBox city={city.name} count={4} />
         </div>
       </main>
       <footer className="w-full text-center py-1 text-gray-500 bg-white bg-opacity-80 text-xs">

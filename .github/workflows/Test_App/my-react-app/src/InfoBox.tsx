@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDebounce } from './hooks/useDebounce';
 
 type WeatherData = {
   temperature: number;
@@ -11,12 +12,29 @@ interface InfoBoxProps {
   city: { name: string; lat: number; lon: number } | null;
 }
 
+const DEFAULT_CITY = { name: 'Gurugram', lat: 28.4595, lon: 77.0266 };
+
+// Simple in-memory cache
+const weatherCache: Record<string, any> = {};
+
 function InfoBox({ city }: InfoBoxProps) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // Debounce city name
+  const debouncedCity = useDebounce(city?.name, 500);
+
   useEffect(() => {
     if (!city) return;
+    const cityKey = debouncedCity || DEFAULT_CITY.name;
+
+    // Check cache first
+    if (weatherCache[cityKey]) {
+      setWeather(weatherCache[cityKey]);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current_weather=true`
@@ -29,10 +47,14 @@ function InfoBox({ city }: InfoBoxProps) {
           humidity: data.current_weather.relativehumidity ?? null,
           windspeed: data.current_weather.windspeed,
         });
+        weatherCache[cityKey] = data; // Cache the result
         setLoading(false);
       })
-      .catch(() => setLoading(false));
-  }, [city]);
+      .catch(() => {
+        setWeather(null);
+        setLoading(false);
+      });
+  }, [debouncedCity, city]);
 
   if (!city) {
     return (
