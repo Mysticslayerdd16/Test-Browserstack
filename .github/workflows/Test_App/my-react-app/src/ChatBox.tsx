@@ -156,6 +156,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onCityChange }) => {
           disabled={loading}
           style={{
             flex: 1,
+            minWidth: 0, // Ensures the input can shrink properly in flex layouts
             padding: 8,
             borderRadius: 8,
             border: '1px solid #ccc',
