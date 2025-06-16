@@ -11,6 +11,7 @@ app.use(express.json());
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.post('/api/chat', async (req, res) => {
+  console.log('Received POST /api/chat');
   const { thread_id, message, assistant_id } = req.body;
 
   try {
