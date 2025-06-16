@@ -7,7 +7,17 @@ type Message = {
   content: string;
 };
 
-const ChatBox: React.FC = () => {
+type ChatBoxProps = {
+  onCityChange?: (city: string) => void;
+};
+
+const extractCityFromText = (text: string): string | null => {
+  // Try to extract a city name from the user's message
+  // For now, just return the whole text trimmed (or use a better NLP if you want)
+  return text.trim();
+};
+
+const ChatBox: React.FC<ChatBoxProps> = ({ onCityChange }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [threadId, setThreadId] = useState<string | null>(null);
@@ -23,17 +33,22 @@ const ChatBox: React.FC = () => {
   const handleNewChat = () => {
     setMessages([]);
     setThreadId(null);
+    if (onCityChange) onCityChange('Gurugram');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Submitting!'); // <-- Add this line
     if (!input.trim()) return;
 
     setMessages((msgs) => [...msgs, { role: 'user', content: input }]);
     setLoading(true);
 
-    // Prepare request
+    // City extraction logic
+    const city = extractCityFromText(input);
+    if (city && onCityChange) {
+      onCityChange(city);
+    }
+
     const body = {
       thread_id: threadId,
       message: input,
@@ -45,13 +60,11 @@ const ChatBox: React.FC = () => {
     setMessages((msgs) => [...msgs, { role: 'assistant', content: '' }]);
 
     try {
-      console.log('Sending request to /api/chat with body:', body); // Add this line
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      console.log('Response status:', response.status); // Add this line
 
       if (!response.body) throw new Error('No response body');
 
