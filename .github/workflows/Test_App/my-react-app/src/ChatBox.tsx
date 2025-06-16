@@ -164,7 +164,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onCityChange }) => {
             outline: 'none',
             background: '#fffbe6',
           }}
-          placeholder="Type a city or chat with the assistant..."
+          placeholder="Chat with the assistant..."
         />
         <button
           type="submit"
