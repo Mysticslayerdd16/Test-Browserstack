@@ -52,9 +52,11 @@ const MapBox: React.FC<MapBoxProps> = ({ latitude, longitude }) => {
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
+  iconRetinaUrl: '/marker-icon-2x.png',
+  iconUrl: '/marker-icon.png',
+  shadowUrl: '/marker-shadow.png',
 });
+
+console.log('markerIcon', markerIcon);
 
 export default MapBox;
