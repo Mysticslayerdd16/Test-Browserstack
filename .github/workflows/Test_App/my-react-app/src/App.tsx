@@ -33,14 +33,14 @@ function App() {
         <span role="img" aria-label="party">🎉</span>
       </header>
       <main className="flex-1 flex flex-col w-full gap-2 p-2" style={{ fontSize: '0.95rem' }}>
-        <div className="flex flex-row w-full gap-2">
-          <div className="flex-1 flex flex-col">
+        <div className="flex flex-col md:flex-row w-full gap-2">
+          <div className="flex-1 flex flex-col min-w-0">
             <InfoBox city={city} />
           </div>
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col min-w-0">
             <MapBox latitude={city.lat} longitude={city.lon} />
           </div>
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col min-w-0">
             <ChatBox onCityChange={handleCityChange} />
           </div>
         </div>
