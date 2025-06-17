@@ -1,3 +1,5 @@
+// Intro to app: This is a simple React application that allows users to explore cities by fetching their coordinates and displaying relevant information, maps, and images. It includes a chat interface for user interaction.
+
 import React, { useState } from 'react';
 import ChatBox from './ChatBox';
 import InfoBox from './InfoBox';
