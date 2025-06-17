@@ -25,6 +25,8 @@ function App() {
     }
   };
 
+  console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
+
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-yellow-100 via-pink-100 to-blue-100">
       <header className="w-full bg-gradient-to-r from-pink-500 via-yellow-400 to-blue-500 text-white p-4 text-2xl font-extrabold shadow-lg tracking-wider flex items-center justify-center gap-4" style={{ fontSize: '1.5rem' }}>
