@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import nlp from 'compromise';
 
 const ASSISTANT_ID = import.meta.env.VITE_ASSISTANT_ID;
 
@@ -12,6 +13,17 @@ type ChatBoxProps = {
 };
 
 const extractCityFromText = (text: string): string | null => {
+  const doc = nlp(text);
+  const places = doc.places().out('array');
+  if (places.length > 0) {
+    return places[0]; // Return the first detected place
+  }
+  // Fallback: try to extract after "about", "in", etc.
+  const match = text.match(/(?:about|in|for|of|at)\s+([a-zA-Z\s]+)/i);
+  if (match && match[1]) {
+    return match[1].trim();
+  }
+  // Fallback: return the whole text
   return text.trim();
 };
 

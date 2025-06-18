@@ -1,0 +1,233 @@
+# City Explorer App Documentation
+
+## Overview
+
+City Explorer is a modern web application that allows users to discover and learn about cities worldwide. The app provides an interactive chat interface powered by AI, real-time weather information, city maps, and curated images. It is built with React, TypeScript, Vite, and Tailwind CSS on the frontend, and uses a Node.js/Express backend for API integration and proxying.
+
+---
+
+## Table of Contents
+
+1. [Features](#features)  
+2. [Architecture](#architecture)  
+3. [Project Structure](#project-structure)  
+4. [Key Components](#key-components)  
+5. [APIs and Integrations](#apis-and-integrations)  
+6. [Setup and Installation](#setup-and-installation)  
+7. [Environment Variables](#environment-variables)  
+8. [Running the Application](#running-the-application)  
+9. [Testing](#testing)  
+10. [Deployment](#deployment)  
+11. [Contributing](#contributing)  
+12. [License](#license)  
+
+---
+
+## Features
+
+- **AI Chat Assistant:** Chat with an OpenAI-powered assistant to ask about cities, get recommendations, and more.
+- **City Search:** Enter any city name to explore its details.
+- **Interactive Map:** View the city’s location on an interactive map (OpenStreetMap via React Leaflet).
+- **Weather Information:** Get current weather data for the selected city (Open-Meteo API).
+- **City Images:** Browse images of the city from Wikimedia Commons.
+- **Responsive Design:** Works seamlessly on desktop and mobile devices.
+
+---
+
+## Architecture
+
+- **Frontend:**  
+  - Built with React and TypeScript.
+  - Uses Vite for fast development and builds.
+  - Tailwind CSS for styling.
+  - Communicates with backend via RESTful API endpoints.
+
+- **Backend:**  
+  - Node.js with Express.
+  - Handles requests to external APIs (OpenAI, OpenStreetMap, Open-Meteo, Wikimedia Commons).
+  - Provides endpoints for chat, geocoding, weather, and images.
+
+---
+
+## Project Structure
+
+```
+my-react-app/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── ChatBox.tsx
+│   │   ├── InfoBox.tsx
+│   │   ├── MapBox.tsx
+│   │   └── CityImagesBox.tsx
+│   ├── hooks/
+│   │   └── useDebounce.ts
+│   ├── types/
+│   │   └── index.ts
+│   ├── utils.ts
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+├── .env
+├── tailwind.config.js
+├── vite.config.ts
+├── tsconfig.json
+└── ...
+backend/
+├── server.js
+└── ...
+```
+
+---
+
+## Key Components
+
+### 1. `App.tsx`
+- Main entry point.
+- Manages global state (selected city, coordinates, etc.).
+- Renders all major UI sections.
+
+### 2. `ChatBox.tsx`
+- Chat interface for user and AI assistant.
+- Sends user messages to `/api/chat` endpoint.
+- Streams and displays assistant responses.
+
+### 3. `InfoBox.tsx`
+- Displays current weather for the selected city.
+- Fetches data from `/api/weather`.
+
+### 4. `MapBox.tsx`
+- Shows an interactive map centered on the selected city.
+- Uses React Leaflet and OpenStreetMap tiles.
+
+### 5. `CityImagesBox.tsx`
+- Fetches and displays images from Wikimedia Commons for the selected city.
+
+### 6. `utils.ts`
+- Utility functions for API calls, debouncing, and data formatting.
+
+---
+
+## APIs and Integrations
+
+- **OpenAI API:** For AI chat assistant.
+- **OpenStreetMap Nominatim:** For city geocoding (latitude/longitude).
+- **Open-Meteo API:** For real-time weather data.
+- **Wikimedia Commons API:** For city images.
+
+All external API calls are proxied through the backend for security and rate-limiting.
+
+---
+
+## Setup and Installation
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm (v9+ recommended)
+
+### Installation Steps
+
+1. **Clone the repository:**
+   ```sh
+   git clone <your-repo-url>
+   cd <repo-directory>
+   ```
+
+2. **Install frontend dependencies:**
+   ```sh
+   cd my-react-app
+   npm install
+   ```
+
+3. **Install backend dependencies:**
+   ```sh
+   cd ../backend
+   npm install
+   ```
+
+---
+
+## Environment Variables
+
+Create a `.env` file in both `my-react-app` and `backend` directories.
+
+### Frontend (`my-react-app/.env`):
+
+```
+VITE_API_URL=http://localhost:5000
+VITE_ASSISTANT_ID=<your-openai-assistant-id>
+```
+
+### Backend (`backend/.env`):
+
+```
+OPENAI_API_KEY=<your-openai-api-key>
+```
+
+---
+
+## Running the Application
+
+1. **Start the backend server:**
+   ```sh
+   cd backend
+   node server.js
+   ```
+
+2. **Start the frontend dev server:**
+   ```sh
+   cd ../my-react-app
+   npm run dev
+   ```
+
+3. **Open your browser:**  
+   Visit [http://localhost:3000](http://localhost:3000)
+
+---
+
+## Testing
+
+- **Frontend:**  
+  Add and run tests using your preferred framework (e.g., Jest, React Testing Library).
+
+- **Backend:**  
+  Add and run tests using Mocha, Jest, or similar.
+
+---
+
+## Deployment
+
+- **Static Hosting:**  
+  The frontend can be built and deployed to any static hosting (e.g., GitHub Pages, Vercel, Netlify).
+  ```sh
+  npm run build
+  ```
+
+- **Backend Hosting:**  
+  Deploy the backend to any Node.js-compatible server (e.g., Heroku, Render, AWS).
+
+- **GitHub Actions:**  
+  See `.github/workflows/static.yml` for CI/CD deployment to GitHub Pages.
+
+---
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes.
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a Pull Request.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Support
+
+For questions or support, please open an issue in the repository.
