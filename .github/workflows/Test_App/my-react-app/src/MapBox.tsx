@@ -29,7 +29,7 @@ const MapBox: React.FC<MapBoxProps> = ({ latitude, longitude }) => {
 
   return (
     <div className="flex-1 bg-white bg-opacity-80 p-3 border-r border-gray-300 flex flex-col rounded-xl shadow-md m-1">
-      <h2 className="text-lg font-bold mb-2 text-blue-600 flex items-center gap-2">
+      <h2 className="text-lg font-bold mb-2 text-black flex items-center gap-2">
         <span role="img" aria-label="map">🗺️</span> City Adventure Map
       </h2>
       <MapContainer
